@@ -3,23 +3,20 @@ const cors = require('cors');
 const http = require('http').createServer(app);
 
 const io = require('socket.io')(http, {
-  origin: 'http://localhost:3000',
+  origin: 'http://localhost:3001',
   methods: ['POST', 'GET'],
 });
 
 app.use(cors());
 
 io.on('connection', (socket) => {
-  console.log(`o ${socket.id} entrou`);
-  socket.on('click',() => {
-    console.log('clicou');
+  socket.on('click',({ state }) => { console.log( state )
+  
+    io.emit('jogou', state);
   });
 
-  io.emit('jogou', () => {
-
-  })
 });
 
-const PORT = 3001
+const PORT = 3002
 
 http.listen(PORT, () => console.log(`Example app listening on PORT ${PORT}!`))

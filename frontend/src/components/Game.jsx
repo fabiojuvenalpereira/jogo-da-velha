@@ -2,17 +2,19 @@ import React, { useState, useEffect } from 'react';
 import socket from '../utils/socket';
 
 const Game = () => {
-  // const [click, setClick] = useState('');
+    let [click, setClick] = useState('');
 
   useEffect(() => {
-    socket.on('connection', () => {
+    socket.on('jogou', (currentState) => {
       console.log('teste');
+      setClick = currentState;
     });
 
   }, []);
 
   const handleClick = ({target}) => {
-    console.log(target);
+    console.log(target.value);
+    socket.emit('clicou', target.value)
   }
 
 
