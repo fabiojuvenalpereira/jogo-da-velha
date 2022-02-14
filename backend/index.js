@@ -10,9 +10,13 @@ const io = require('socket.io')(http, {
 app.use(cors());
 
 io.on('connection', (socket) => {
-  soket.on('click',() => {
-
+  socket.on('click',() => {
+    
   });
+
+  io.emit('jogou', () => {
+
+  })
 });
 
 const PORT = 3001
