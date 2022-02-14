@@ -10,8 +10,9 @@ const io = require('socket.io')(http, {
 app.use(cors());
 
 io.on('connection', (socket) => {
+  console.log(`o ${socket.id} entrou`);
   socket.on('click',() => {
-    
+    console.log('clicou');
   });
 
   io.emit('jogou', () => {
